@@ -1,78 +1,98 @@
 # FiberRock
-Word lists and dictionaries for burte force attacks
+## Word lists and dictionaries for burte force attacks
 
-# Some information...
+# Fibertel Argentina
+
+The purpose of this project/script is to demonstrate a Python script that generates dictionaries to crack WPA2 passwords for a specific Internet Service Provider (IPS) in Argentina called Fibertel. Fibertel possesses a common vulnerability that allows for the easy cracking of WiFi passwords.
+
+The vulnerability lies in the default password assignment process during the installation of a new Fibertel WiFi service. By default, Fibertel assigns a password consisting of 10/11 numbers. This password not only corresponds to the customer number displayed on any invoice but also shares a significant portion with the account holder's identification card (DNI).
+
+Exploiting this vulnerability becomes relatively easy for an attacker who has access to the invoice. By simply reading the header, the attacker can obtain the customer number, and consequently, the WiFi password. Even if the invoice is unavailable, there exist multiple methods to obtain a person's identification card number.using just their name and surname, such as websites like www.dateas.com. Additionally, it is widely known that Fibertel's customer numbers for individuals typically start with the digits 004, 014, or 044.
+
+The same vulnerability can be found in the connections of services for businesses.
+
+The only difference is that, in the case of these types of connections, the password usually starts with "010", and the remaining digits represent the beginning of the company's CUIT number (tax identification number).
+
+By incorporating this additional information into our Python script, we can expand its capabilities to crack passwords for both residential and business connections offered by these telecommunications service providers.
+
+In this project, I have developed a Python script that automates the process of generating dictionaries containing the potential passwords based on Fibertel's password assignment patterns. By utilizing these dictionaries in conjunction with password-cracking tools, the potential security risks associated with Fibertel's default password are high. 
+The project aims to shed light on the potential risks and vulnerabilities associated with default password practices in both the residential and business sectors.
 
 ## DNI
 
-El Documento Nacional de Identidad (DNI) en Argentina tiene un número identificatorio impreso en el frente del documento. Este número es único para cada ciudadano argentino y los extranjeros con residencia permanente en el país. El número de DNI se utiliza para identificar de manera individual a cada persona en los registros y trámites administrativos.
+The National Identity Document (Documento Nacional de Identidad or DNI) in Argentina has an identification number printed on the front of the document. This number is unique to each Argentine citizen and foreign residents with permanent residency in the country. The DNI number is used to individually identify each person in records and administrative procedures.
 
-Anteriormente, el número de DNI estaba vinculado a la libreta de enrolamiento (LE) para hombres y la libreta cívica (LC) para mujeres, que eran documentos previos al DNI. Con la implementación del nuevo sistema de DNI, todos los ciudadanos recibieron un nuevo número de identificación.
-
-El número de DNI consta de una secuencia numérica única que puede tener entre 6 y 8 dígitos, dependiendo de la generación del documento. A medida que se emitieron nuevas generaciones de DNI, se introdujeron cambios en la estructura y longitud del número de identificación.
-
-Es importante tener en cuenta que el número de DNI es utilizado ampliamente en diferentes ámbitos, como trámites legales, inscripción en el padrón electoral, acceso a servicios públicos y privados, entre otros. También se utiliza como referencia para establecer la identidad de una persona en diversas situaciones.
+The DNI number consists of a unique numerical sequence that can have between 6 and 8 digits, depending on the generation of the document. As new generations of the DNI were issued, changes were made to the structure and length of the identification number.
 
 ## CUIT
 
-El número de CUIT (Clave Única de Identificación Tributaria) en Argentina consta de un total de once (11) cifras y se conforma de la siguiente manera:
+The CUIT number (Clave Única de Identificación Tributaria) in Argentina consists of a total of eleven (11) digits and is structured as follows:
 
-Dos dígitos iniciales: Indican el tipo global. Los tipos posibles son:
-20, 23, 24, 25, 26 y 27 para personas físicas.
-30, 33 y 34 para personas jurídicas (empresas).
-Ocho dígitos siguientes: En el caso de personas físicas, corresponden al número de Documento Nacional de Identidad (DNI). En el caso de empresas, es un número de sociedad asignado por la AFIP (Administración Federal de Ingresos Públicos).
+- Two initial digits:
+      Indicate the global type. The possible types are:
+            - 20, 23, 24, 25, 26, and 27 for individuals.
+            - 30, 33, and 34 for legal entities (companies).
 
-Un dígito verificador: Se utiliza para validar la precisión del número de CUIT. El dígito verificador se calcula utilizando el algoritmo Módulo 11. Se toma el número de 10 dígitos compuesto por los 2 primeros dígitos del CUIT y los 8 dígitos siguientes, de derecha a izquierda. Cada dígito se multiplica por los números que componen la serie numérica 2, 3, 4, 5, 6, 7. Luego se suman los resultados de estas multiplicaciones. A este número obtenido se le aplica el módulo 11 (se divide por 11) y se determina el resto de la división. El dígito verificador será la diferencia entre 11 y el resto obtenido. Si el resto es 0, el dígito verificador es 0.
+- Eight subsequent digits: In the case of individuals, they correspond to the National Identity Document (Documento Nacional de Identidad or DNI) number. For companies, it is a society number assigned by the AFIP (Administración Federal de Ingresos Públicos).
 
-Además, es importante tener en cuenta que para los casos de documentos de 7 dígitos (por ejemplo, DNI), se debe agregar un 0 al inicio del número, de modo que la clave completa tenga el formato: ##-01234567-X.
+- One verification digit: It is used to validate the accuracy of the CUIT number. 
+
+The verification digit is calculated using the Module 11 algorithm. The 10-digit number composed of the first two digits of the CUIT and the following eight digits, from right to left, is taken. Each digit is multiplied by the numbers in the numerical series 2, 3, 4, 5, 6, 7. The results of these multiplications are then summed. This obtained number is subjected to module 11 (divided by 11), and the remainder of the division is determined. The verification digit is the difference between 11 and the obtained remainder. If the remainder is 0, the verification digit is 0.
+
+Additionally, it is important to note that in cases of documents with 7 digits (e.g., DNI), a leading 0 must be added to the number so that the complete key has the format: ##-01234567-X
 
 
 ## CUIL
 
-El número de CUIL (Código Único de Identificación Laboral) en Argentina se conforma de la siguiente manera, de acuerdo con el texto proporcionado:
+The CUIL number (Código Único de Identificación Laboral) in Argentina is structured as follows, according to the provided text:
 
-Prefijo de dos dígitos: El prefijo puede ser 20, 23, 24 o 27. Anteriormente, se utilizaba el prefijo 20 para personas de sexo masculino y 27 para personas de sexo femenino. Sin embargo, a partir de una circular emitida en 2012, el CUIL no se modifica en caso de cambio de género.
+- Two-digit prefix: The prefix can be 20, 23, 24, or 27. Previously, the prefix 20 was used for males, and 27 for females. However, since a circular issued in 2012, the CUIL is not changed in case of gender change.
 
-Número de DNI: Se utiliza el número de Documento Nacional de Identidad (DNI) de la persona, que consta de ocho dígitos. En caso de que el número de DNI tenga menos de ocho dígitos, se deben completar los espacios restantes con ceros a la izquierda.
+- DNI number: The person's National Identity Document (Documento Nacional de Identidad or DNI) number is used, which consists of eight digits. If the DNI number has fewer than eight digits, the remaining spaces must be filled with leading zeros.
 
-Dígito verificador: Es un dígito utilizado para validar la precisión del número de CUIL. Se coloca después del número de DNI y se utiliza para verificar la exactitud de todo el código.
+- Verification digit: It is a digit used to validate the accuracy of the CUIL number. It is placed after the DNI number and is used to verify the accuracy of the entire code.
 
-El formato completo del CUIL se expresa de la siguiente manera: "##-########-#" donde ## es el prefijo, ######## es el número de DNI y # es el dígito verificador.
-
-
-## Dígito verificador
-
-El dígito verificador del CUIL no se calcula utilizando el algoritmo Módulo 11 como en el caso del CUIT. El dígito verificador del CUIL se calcula utilizando el algoritmo conocido como "Módulo 10, base 11".
-
-El proceso para calcular el dígito verificador del CUIL es el siguiente:
-
-Se toma el número de 10 dígitos compuesto por los 2 primeros dígitos del prefijo seguidos de los 8 dígitos del número de DNI, de derecha a izquierda.
-
-Se multiplican estos dígitos por los números que componen la serie numérica 2, 3, 4, 5, 6, 7, 8, 9, 2, 3. Si se han agotado los dígitos de la serie y aún quedan dígitos por multiplicar, se vuelve a comenzar la serie desde el principio.
-
-Se suman los resultados de las multiplicaciones obtenidas en el paso anterior.
-
-Se divide la suma total por 11 y se obtiene el resto de la división.
-
-Si el resto es igual a 0, el dígito verificador es 0. Si el resto es igual a 1, se realiza una regla especial: si el sexo registrado en el CUIL es masculino, el dígito verificador es 9 y si el sexo registrado es femenino, el dígito verificador es 4.
-
-En caso contrario, el dígito verificador es igual a la diferencia entre 11 y el resto obtenido en el paso 4.
-
-Es importante tener en cuenta que el cálculo del dígito verificador del CUIL es específico para el CUIL y no se aplica al cálculo del dígito verificador del CUIT.
-
-## Posibles errores
+The complete format of the CUIL is expressed as follows: "##-12345678-x" where ## is the prefix, 12345678 is the DNI number, and x is the verification digit.
 
 
-Si el dígito verificador calculado mediante el algoritmo Módulo 11 no coincide con el dígito verificador real de tu CUIL, puede haber diferentes razones por las que esto ocurra:
+## Verification digit
 
-Error en la carga de los datos: Es posible que haya ocurrido un error al ingresar o transcribir los números de tu CUIL. Un dígito incorrecto en el número de DNI o en el prefijo puede llevar a un cálculo incorrecto del dígito verificador.
+The verification digit of the CUIL is not calculated using the Module 11 algorithm like in the case of the CUIT. The verification digit of the CUIL is calculated using the algorithm known as "Module 10, base 11."
 
-Variaciones en el algoritmo: Aunque el algoritmo Módulo 11 es ampliamente utilizado para calcular el dígito verificador de los números de identificación, puede haber variaciones o excepciones específicas en ciertos casos. Estas variaciones podrían deberse a actualizaciones o particularidades en la normativa aplicada por la entidad encargada de asignar los números de identificación.
+The process to calculate the verification digit of the CUIL is as follows:
 
-Error en la asignación del número: Es posible que haya ocurrido un error en la asignación del CUIL por parte de la entidad responsable, en este caso la Administración Nacional de la Seguridad Social (ANSeS). Esto podría deberse a errores administrativos o fallos en el proceso de asignación de los números de identificación.
+Take the 10-digit number composed of the first two digits of the prefix followed by the 8 digits of the DNI number, from right to left.
 
-<<<<<<< HEAD
-En este tipo de situaciones, te recomendaría verificar nuevamente los datos ingresados y, si persiste la discrepancia entre el dígito verificador calculado y el dígito verificador real de tu CUIL, te aconsejo que te comuniques con la ANSeS u otra entidad competente para solicitar aclaraciones y asistencia en la corrección del número de identificación.
-=======
-En este tipo de situaciones, te recomendaría verificar nuevamente los datos ingresados y, si persiste la discrepancia entre el dígito verificador calculado y el dígito verificador real de tu CUIL, te aconsejo que te comuniques con la ANSeS u otra entidad competente para solicitar aclaraciones y asistencia en la corrección del número de identificación.
->>>>>>> de2882b5bb2b84116d66c3561f89e1fef90a60e4
+Multiply these digits by the numbers in the numerical series 2, 3, 4, 5, 6, 7, 8, 9, 2, 3. If all the digits in the series have been used and there are still digits left to multiply, restart the series from the beginning.
+
+Sum the results of the multiplications obtained in the previous step.
+
+Divide the total sum by 11 and obtain the remainder of the division.
+
+If the remainder is equal to 0, the verification digit is 0. If the remainder is equal to 1, a special rule is applied: if the registered gender in the CUIL is male, the verification digit is 9, and if the registered gender is female, the verification digit is 4.
+
+Otherwise, the verification digit is equal to the difference between 11 and the remainder obtained in step 4.
+
+It is important to note that the calculation of the verification digit for the CUIL is specific to the CUIL and does not apply to the calculation of the verification digit for the CUIT.
+
+## Common variations and errors
+
+
+If the verification digit calculated using the Module 11 algorithm does not match the actual verification digit of your CUIL, there may be different reasons why this occurs:
+
+- Data entry error: It is possible that an error occurred when entering or transcribing the numbers of your CUIL. An incorrect digit in the DNI number or the prefix can lead to an incorrect calculation of the verification digit.
+
+- Variations in the algorithm: Although the Module 11 algorithm is widely used to calculate the verification digit of identification numbers, there may be specific variations or exceptions in certain cases. These variations could be due to updates or specific regulations applied by the entity responsible for assigning identification numbers.
+
+- Error in the number assignment: It is possible that an error occurred in the assignment of the CUIL by the responsible entity, in this case, the National Social Security Administration (ANSeS). This could be due to administrative errors or failures in the process of assigning identification numbers.
+
+In these types of situations, is adviced to verifying the entered data again, and if the discrepancy between the calculated verification digit and the actual verification digit of your CUIL persists, you can contact ANSeS or another competent entity to request clarification and assistance in correcting the identification number.
+
+# References
+https://medium.com/@closerluc/la-vulnerabilidad-de-las-conexiones-wifi-de-fibertel-argentina-5ea5c9c503b5
+
+https://www.reddit.com/r/argentina/comments/f3bola/psa_si_tienen_fibertel_y_no_cambiaron_la_wifi_la/
+
+https://maurobernal.com.ar/cuil/calcular-el-cuil/
+
+
