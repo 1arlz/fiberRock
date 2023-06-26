@@ -13,8 +13,8 @@ def fibertel() -> None:
 
     for prefix in home_prefixes:
         for i in range (1000000, 50000000):
-            fibertel.write('{0:3d}{1:08d}'.format(int(prefix), int(i)))
-            fibertel.write('{0:3d}{1:07d}'.format(int(prefix), int(i))) # Certain confution exists about if the DNI is the whole number or the first 7 digits, so I will double the posibilities.
+            fibertel.write('{0:03d}{1:08d}'.format(int(prefix), int(i)))
+            fibertel.write('{0:03d}{1:07d}'.format(int(prefix), int(i))) # Certain confution exists about if the DNI is the whole number or the first 7 digits, so I will double the posibilities.
     fibertel.close()
     print("Done")
 
@@ -26,8 +26,8 @@ def fibercorp() -> None:
     for prefix in corp_prefixes:
         for prefix_ in cuit_cuil_prefixes:
             for i in range (0, 100000):
-                fibercorp.write('{0:3d}{1:2d}{2:05d}'.format(int(prefix), int(prefix_), int(i)))
-                fibercorp.write('{0:3d}{1:2d}{2:09d}'.format(int(prefix), int(prefix_), int(i))) #the same confurion apperares here so I will duplicate again.
+                fibercorp.write('{0:03d}{1:2d}{2:05d}'.format(int(prefix), int(prefix_), int(i)))
+                fibercorp.write('{0:03d}{1:2d}{2:09d}'.format(int(prefix), int(prefix_), int(i))) #the same confurion apperares here so I will duplicate again.
     fibercorp.close()
     print("Done")
 
