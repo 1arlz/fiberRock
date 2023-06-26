@@ -1,4 +1,4 @@
-# iRock
+# FiberRock
 Word lists and dictionaries for burte force attacks
 
 # Some information...
@@ -71,4 +71,8 @@ Variaciones en el algoritmo: Aunque el algoritmo Módulo 11 es ampliamente utili
 
 Error en la asignación del número: Es posible que haya ocurrido un error en la asignación del CUIL por parte de la entidad responsable, en este caso la Administración Nacional de la Seguridad Social (ANSeS). Esto podría deberse a errores administrativos o fallos en el proceso de asignación de los números de identificación.
 
+<<<<<<< HEAD
 En este tipo de situaciones, te recomendaría verificar nuevamente los datos ingresados y, si persiste la discrepancia entre el dígito verificador calculado y el dígito verificador real de tu CUIL, te aconsejo que te comuniques con la ANSeS u otra entidad competente para solicitar aclaraciones y asistencia en la corrección del número de identificación.
+=======
+En este tipo de situaciones, te recomendaría verificar nuevamente los datos ingresados y, si persiste la discrepancia entre el dígito verificador calculado y el dígito verificador real de tu CUIL, te aconsejo que te comuniques con la ANSeS u otra entidad competente para solicitar aclaraciones y asistencia en la corrección del número de identificación.
+>>>>>>> de2882b5bb2b84116d66c3561f89e1fef90a60e4
