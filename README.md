@@ -30,7 +30,9 @@ The CUIT number (Clave Única de Identificación Tributaria) in Argentina consis
 
 - Two initial digits:
       Indicate the global type. The possible types are:
+  
             - 20, 23, 24, 25, 26, and 27 for individuals.
+  
             - 30, 33, and 34 for legal entities (companies).
 
 - Eight subsequent digits: In the case of individuals, they correspond to the National Identity Document (Documento Nacional de Identidad or DNI) number. For companies, it is a society number assigned by the AFIP (Administración Federal de Ingresos Públicos).
