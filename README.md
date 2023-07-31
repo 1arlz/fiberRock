@@ -1,5 +1,5 @@
-# FiberRock
-## Word lists and dictionaries for burte force attacks
+xD# FiberRock
+## Wordlists and dictionaries generator for WPA burte force attacks
 
 # Fibertel Argentina
 
