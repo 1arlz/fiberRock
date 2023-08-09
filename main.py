@@ -1,4 +1,3 @@
-import subprocess
 
 corp_prefixes = ["010 ","044", "013", "033"]
 home_prefixes = ["004", "003", "044", "014", "141"]
@@ -30,7 +29,7 @@ def fibercorp() -> None:
         for prefix_ in cuit_cuil_prefixes:
             for i in range (0, 100000):
                 fibercorp.write('{0:03d}{1:2d}{2:05d}\n'.format(int(prefix), int(prefix_), int(i)))
-                fibercorp.write('{0:03d}{1:2d}{2:09d}\n'.format(int(prefix), int(prefix_), int(i))) #the same confurion apperares here so I will duplicate again.
+                fibercorp.write('{0:03d}{1:2d}{2:09d}\n'.format(int(prefix), int(prefix_), int(i))) # the same confution apperares here so I will duplicate again.
     fibercorp.close()
     print("Done")
 
